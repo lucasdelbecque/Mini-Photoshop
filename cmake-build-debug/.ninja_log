@@ -1,0 +1,16 @@
+# ninja log v5
+3	758	1771106139322645206	CMakeFiles/MiniPhotoshop.dir/main.cpp.o	6474f860b4f37f78
+4	533	1771106139099087427	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui_demo.cpp.o	143f6216b72d47ab
+3	624	1771106139188696548	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui_impl_glfw.cpp.o	bfee6d41cebc0707
+3	240	1771106157093968072	build.ninja	77b5ff2449a840c
+673	799	1771105520316269412	MiniPhotoshop	5e2889663fc8851b
+4	578	1771106139144327552	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui_draw.cpp.o	2b768a7fa686e4b0
+3	816	1771106139379884458	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui.cpp.o	9f560d75ff68adca
+20	195	1771106335528882945	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui_impl_opengl3.cpp.o	7297a9408534a112
+20	334	1771106335670292505	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui_tables.cpp.o	6f4dac2e76e9968c
+20	554	1771106335890590731	CMakeFiles/MiniPhotoshop.dir/dependencies/imgui/imgui_widgets.cpp.o	1af2cf1e721f31b
+554	754	1771106336088456624	MiniPhotoshop	d6f20ce1bac31406
+7	680	1771106537889024114	CMakeFiles/MiniPhotoshop.dir/main.cpp.o	6474f860b4f37f78
+680	866	1771106538075120756	MiniPhotoshop	d6f20ce1bac31406
+25	727	1771106843200059649	CMakeFiles/MiniPhotoshop.dir/main.cpp.o	6474f860b4f37f78
+727	916	1771106843390988808	MiniPhotoshop	d6f20ce1bac31406

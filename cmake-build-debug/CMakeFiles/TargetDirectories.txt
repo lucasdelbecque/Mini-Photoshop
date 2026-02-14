@@ -1,0 +1,3 @@
+/Users/lucasdelbecque/Desktop/UTC/Adobe/MiniPhotoshop/cmake-build-debug/CMakeFiles/MiniPhotoshop.dir
+/Users/lucasdelbecque/Desktop/UTC/Adobe/MiniPhotoshop/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/lucasdelbecque/Desktop/UTC/Adobe/MiniPhotoshop/cmake-build-debug/CMakeFiles/rebuild_cache.dir
