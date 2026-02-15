@@ -1,90 +1,90 @@
-# GPU Image Processing Engine
+# Moteur de Traitement d'Image GPU
 
-A high-performance, real-time image processing application built from scratch using **C++** and **Modern OpenGL (3.3+)**.
+Une application de traitement d'image haute performance en temps réel, développée "from scratch" en **C++** et **Modern OpenGL (3.3+)**.
 
-This project demonstrates the implementation of a programmable graphics pipeline to perform signal processing operations (convolutions, spatial filtering, color manipulation) directly on the GPU via custom GLSL Fragment Shaders. It features a responsive graphical user interface (GUI) based on **Dear ImGui** for dynamic parameter control.
+Ce projet démontre l'implémentation d'un pipeline graphique programmable pour effectuer des opérations de traitement du signal (convolutions, filtrage spatial, manipulation colorimétrique) directement sur le GPU via des Fragment Shaders GLSL personnalisés. Il intègre une interface utilisateur graphique (GUI) réactive basée sur **Dear ImGui** pour le contrôle dynamique des paramètres.
 
-## Project Overview
+## Présentation du Projet
 
-Unlike traditional CPU-based image editors that iterate over pixels sequentially, this engine leverages the parallel processing power of the GPU. Every pixel is processed simultaneously through a custom graphics pipeline, allowing for lag-free adjustments of complex filters like Gaussian Blur or Edge Detection, even on high-resolution images.
+Contrairement aux éditeurs d'images traditionnels basés sur le CPU qui itèrent séquentiellement sur les pixels, ce moteur exploite la puissance de calcul parallèle du GPU. Chaque pixel est traité simultanément via un pipeline graphique personnalisé, permettant des ajustements sans latence de filtres complexes comme le Flou Gaussien ou la Détection de Contours, même sur des images haute résolution.
 
-### Key Features
+### Fonctionnalités Clés
 
-* **Real-Time GPU Filtering**: All image manipulations occur in the Fragment Shader.
-    * **Gaussian Blur**: Dynamic convolution kernel with variable radius.
-    * **Edge Detection**: Sobel-like kernel implementation for structural feature extraction.
-    * **Mosaic/Pixelation**: UV coordinate manipulation for local spatial resolution reduction.
-    * **Color Grading**: Weighted luminance grayscale conversion and negative inversion.
-* **Non-Destructive Workflow**: Filters can be toggled and combined dynamically without altering the original source texture data.
-* **Modern OpenGL Architecture**: Strict adherence to Core Profile (VAO, VBO, EBO) standards. No deprecated functions (`glBegin`/`glEnd`) were used.
-* **High-DPI Support**: Native support for Retina/4K displays with correct viewport scaling and UI coordinate mapping.
-* **Robust Texture Handling**: Implementation of `GL_CLAMP_TO_EDGE` wrapping and linear filtering to prevent convolution artifacts at image borders.
+* **Filtrage GPU Temps Réel** : Toutes les manipulations d'image se font dans le Fragment Shader.
+    * **Flou Gaussien** : Noyau de convolution dynamique avec rayon variable.
+    * **Détection de Contours** : Implémentation de type Sobel pour l'extraction de caractéristiques structurelles.
+    * **Mosaïque / Pixélisation** : Manipulation des coordonnées UV pour la réduction locale de la résolution spatiale.
+    * **Colorimétrie** : Conversion en niveaux de gris (luminance pondérée) et inversion négative.
+* **Flux Non-Destructif** : Les filtres peuvent être activés et combinés dynamiquement sans altérer les données de la texture source originale.
+* **Architecture Modern OpenGL** : Respect strict du Core Profile (VAO, VBO, EBO). Aucune fonction dépréciée (`glBegin`/`glEnd`) n'a été utilisée.
+* **Support High-DPI** : Support natif des écrans Retina/4K avec mise à l'échelle correcte du viewport et des coordonnées UI.
+* **Gestion Robuste des Textures** : Implémentation du `GL_CLAMP_TO_EDGE` et du filtrage linéaire pour éviter les artefacts de convolution sur les bords de l'image.
 
-## Technical Stack
+## Stack Technique
 
-* **Language**: C++17
-* **Graphics API**: OpenGL 3.3 Core Profile
-* **Shader Language**: GLSL 330
-* **Windowing system**: GLFW
-* **GUI Library**: Dear ImGui
-* **Image Loading**: stb_image
-* **Build System**: CMake
+* **Langage** : C++17
+* **API Graphique** : OpenGL 3.3 Core Profile
+* **Langage Shader** : GLSL 330
+* **Fenêtrage** : GLFW
+* **Librairie GUI** : Dear ImGui
+* **Chargement d'Image** : stb_image
+* **Système de Build** : CMake
 
 ## Architecture
 
-The application follows a strict separation between the host application (CPU) and the rendering pipeline (GPU):
+L'application suit une séparation stricte entre l'application hôte (CPU) et le pipeline de rendu (GPU) :
 
-1.  **Initialization**: The generic `input.jpg` is loaded into VRAM as a 2D Texture.
-2.  **Application Loop**:
-    * **Input**: `GLFW` handles window events and inputs.
-    * **GUI**: `Dear ImGui` renders the sidebar and captures filter parameters (intensity, radius, toggles).
-    * **Uniforms**: The C++ host sends these parameters to the GPU via Uniform variables.
-3.  **Rendering Pipeline**:
-    * **Vertex Shader**: Passes geometry and texture coordinates.
-    * **Fragment Shader**: Executes the convolution loops and color mixing logic per pixel.
-4.  **Output**: The result is rendered to a full-screen quad.
+1.  **Initialisation** : L'image générique `input.jpg` est chargée en VRAM sous forme de Texture 2D.
+2.  **Boucle d'Application** :
+    * **Entrées** : `GLFW` gère les événements fenêtres et souris.
+    * **GUI** : `Dear ImGui` effectue le rendu de la barre latérale et capture les paramètres (intensité, rayon, cases à cocher).
+    * **Uniforms** : L'hôte C++ envoie ces paramètres au GPU via des variables Uniformes.
+3.  **Pipeline de Rendu** :
+    * **Vertex Shader** : Transmet la géométrie et les coordonnées de texture.
+    * **Fragment Shader** : Exécute les boucles de convolution et la logique de mixage des couleurs par pixel.
+4.  **Sortie** : Le résultat est rendu sur un quad plein écran (Full-screen quad).
 
-## Prerequisites
+## Prérequis
 
-* **C++ Compiler**: Clang (macOS), GCC (Linux), or MSVC (Windows).
-* **CMake**: Version 3.10 or higher.
-* **GLFW**: Must be installed on the system.
+* **Compilateur C++** : Clang (macOS), GCC (Linux), ou MSVC (Windows).
+* **CMake** : Version 3.10 ou supérieure.
+* **GLFW** : Doit être installé sur le système.
 
-### Installing Dependencies (macOS)
+### Installation des dépendances (macOS)
 
     brew install glfw
 
-## Build Instructions
+## Instructions de Compilation
 
-1.  **Clone the repository**:
+1.  **Cloner le dépôt** :
     
-    git clone <repository_url>
-    cd <repository_folder>
+    git clone <url_du_depot>
+    cd <dossier_du_depot>
 
-2.  **Prepare the build directory**:
+2.  **Préparer le dossier de build** :
 
     mkdir build
     cd build
 
-3.  **Configure and Compile**:
+3.  **Configurer et Compiler** :
 
     cmake ..
     make
 
-4.  **Run the application**:
-    Make sure an image named `input.jpg` is present in the executable's directory.
+4.  **Lancer l'application** :
+    Assurez-vous qu'une image nommée `input.jpg` est présente dans le dossier de l'exécutable.
 
     ./MiniPhotoshop
 
-## Usage
+## Utilisation
 
-1.  **Launch**: The application opens with the default image loaded.
-2.  **Sidebar Controls**: Use the inspector panel on the right to toggle filters.
-3.  **Intensity Sliders**: Adjust the sliders to change the kernel size (for Blur) or the mixing factor (for other effects).
-4.  **Combination**: Multiple filters can be active simultaneously. The shader applies them in a logical pass order (Mosaic -> Blur -> Color adjustments).
+1.  **Lancement** : L'application s'ouvre avec l'image par défaut chargée.
+2.  **Contrôles Latéraux** : Utilisez le panneau inspecteur sur la droite pour activer les filtres.
+3.  **Sliders d'Intensité** : Ajustez les curseurs pour modifier la taille du noyau (pour le Flou) ou le facteur de mixage (pour les autres effets).
+4.  **Combinaison** : Plusieurs filtres peuvent être actifs simultanément. Le shader les applique dans un ordre logique (Mosaïque -> Flou -> Ajustements colorimétriques).
 
-## Author
+## Auteur
 
 **Lucas Delbecque**
 
-Developed as a technical demonstration of hardware acceleration for image processing and low-level graphics programming.
+Développé comme démonstration technique de l'accélération matérielle pour le traitement d'image et la programmation graphique bas niveau.
